@@ -5,6 +5,7 @@ from freegames import path
 car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
+state = {"taps" : 0}
 hide = [True] * 64
 
 def square(x, y):
@@ -59,6 +60,10 @@ def draw():
         goto(x + 2, y)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
+    up()
+    goto(-180, 180)
+    color('black')
+    write(f"Taps: {state['taps']}", font=('Arial', 15, 'normal'))
 
     update()
     ontimer(draw, 100)
