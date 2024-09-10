@@ -64,19 +64,24 @@ def tap(x, y):
     if start is None:
         state['start'] = vector(x, y)
     else:
-        shape = state['shape']
+        shape = state['shape'] # Obtiene la forma que se va a dibujar
         end = vector(x, y)
         shape(start, end)
-        state['start'] = None
+        state['start'] = None # Resetea el punto de inicio despues de dibujar
 
 def store(key, value):
     "Store value in state at key."
-    state[key] = value
+    state[key] = value # Guarda valor en diccionario
 
+# Diccionario: almacena el estado de inicio y la forma actual seleccionada
 state = {'start': None, 'shape': line}
+#Tamaño de la ventana de dibujo
 setup(420, 420, 370, 0)
+# Detecta clics en pantalla para iniciar el dibujo
 onscreenclick(tap)
 listen()
+
+# Asignacion de teclas para deshacer y cambiar colores
 onkey(undo, 'u')
 onkey(lambda: color('black'), 'K')
 onkey(lambda: color('white'), 'W')
@@ -84,9 +89,12 @@ onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
 onkey(lambda: color('yellow'), 'Y')
+
+# Asignacion de teclas para seleccionar las formas a dibujar
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
 onkey(lambda: store('shape', rectangle), 'r')
 onkey(lambda: store('shape', triangle), 't')
-done()
+
+done() # Finaliza el programa y cierra la ventana
