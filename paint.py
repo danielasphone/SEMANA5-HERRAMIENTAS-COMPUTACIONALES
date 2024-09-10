@@ -23,7 +23,13 @@ def square(start, end):
 
 def circle(start, end):
     "Draw circle from start to end."
-    pass  # TODO
+     up() # Levanta el lapiz
+    goto(start.x, start.y)  # Mueve el cursor al punto inicial
+    down() # Baja el lapiz para dibujar
+    begin_fill() # Comienza a rellenar la forma
+    radius = ((end.x - start.x)**2 + (end.y - start.y)**2)**0.5  # Calcula el radio circulo
+    turtle.circle(radius)  # Dibuja el circulo usando el radio calculado
+    end_fill() # Termina de rellenar el circulo
 
 def rectangle(start, end):
     "Draw rectangle from start to end."
