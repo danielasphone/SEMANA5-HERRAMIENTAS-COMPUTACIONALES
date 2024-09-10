@@ -33,7 +33,18 @@ def circle(start, end):
 
 def rectangle(start, end):
     "Draw rectangle from start to end."
-    pass  # TODO
+     up()  # Levanta el lapiz
+    goto(start.x, start.y)  # Mueve el cursor al punto inicial
+    down()  # Baja el lapiz para dibujar
+    begin_fill() # Comienza a rellenar la forma
+    width = end.x - start.x # Calcula el ancho del rectangulo
+    height = end.y - start.y  # Calcula la altura del rectangulo
+    for _ in range(2): # Dibuja los lados del rectangulo (dos pares de lados opuestos)
+        forward(width)  # Dibuja un lado
+        left(90) # Gira 90 grados a la izquierda
+        forward(height)  # Dibuja el otro lado
+        left(90) # Gira 90 grados a la izquierda
+    end_fill() # Termina de rellenar el rectangulo
 
 def triangle(start, end):
     "Draw triangle from start to end."
