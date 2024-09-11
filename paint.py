@@ -23,13 +23,17 @@ def square(start, end):
 
 def circle(start, end):
     "Draw circle from start to end."
-     up() # Levanta el lapiz
-    goto(start.x, start.y)  # Mueve el cursor al punto inicial
-    down() # Baja el lapiz para dibujar
-    begin_fill() # Comienza a rellenar la forma
-    radius = ((end.x - start.x)**2 + (end.y - start.y)**2)**0.5  # Calcula el radio circulo
-    turtle.circle(radius)  # Dibuja el circulo usando el radio calculado
-    end_fill() # Termina de rellenar el circulo
+    # Calcula radio basandose en distancia entre start y end
+    radius = ((end.x - start.x) ** 2 + (end.y - start.y) ** 2) ** 0.5
+    
+    up()
+    # Ve al punto donde deberia estar el centro del circulo y ajusta
+    goto(start.x, start.y - radius)
+    down()
+    
+    begin_fill()
+    circle(radius)  # para usar circle de turtle para dibujar el circulo
+    end_fill()
 
 def rectangle(start, end):
     "Draw rectangle from start to end."
@@ -93,7 +97,7 @@ onkey(lambda: color('yellow'), 'Y')
 # Asignacion de teclas para seleccionar las formas a dibujar
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
-onkey(lambda: store('shape', circle), 'c')
+onkey(lambda: store('shape', draw_circle), 'c')
 onkey(lambda: store('shape', rectangle), 'r')
 onkey(lambda: store('shape', triangle), 't')
 
