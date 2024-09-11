@@ -21,7 +21,7 @@ def square(start, end):
 
     end_fill()
 
-def circle(start, end):
+def draw_circle(start, end):
     "Draw circle from start to end."
     # Calcula radio basandose en distancia entre start y end
     radius = ((end.x - start.x) ** 2 + (end.y - start.y) ** 2) ** 0.5
@@ -37,18 +37,19 @@ def circle(start, end):
 
 def rectangle(start, end):
     "Draw rectangle from start to end."
-     up()  # Levanta el lapiz
+    up()  # Levanta el lapiz
     goto(start.x, start.y)  # Mueve el cursor al punto inicial
     down()  # Baja el lapiz para dibujar
     begin_fill() # Comienza a rellenar la forma
-    width = end.x - start.x # Calcula el ancho del rectangulo
-    height = end.y - start.y  # Calcula la altura del rectangulo
-    for _ in range(2): # Dibuja los lados del rectangulo (dos pares de lados opuestos)
-        forward(width)  # Dibuja un lado
-        left(90) # Gira 90 grados a la izquierda
-        forward(height)  # Dibuja el otro lado
-        left(90) # Gira 90 grados a la izquierda
-    end_fill() # Termina de rellenar el rectangulo
+
+    #Dibuja rectangulo completando los 4 lados
+    for cout in range(2):
+        forward(end.x - start.x)
+        left(90)
+        forward(end.y - start.y)
+        left(90)
+
+    end_fill()
 
 def triangle(start, end):
     "Draw triangle from start to end."
