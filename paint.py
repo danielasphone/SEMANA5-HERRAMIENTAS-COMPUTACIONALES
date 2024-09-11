@@ -53,13 +53,16 @@ def rectangle(start, end):
 
 def triangle(start, end):
     "Draw triangle from start to end."
-     up()  # Levanta el lapiz
+    up()  # Levanta el lapiz
     goto(start.x, start.y) # Mueve el cursor al punto inicial
     down() # Baja el lapiz para dibujar
     begin_fill() # Comienza a rellenar la forma
-    for _ in range(3): # Dibuja tres lados para formar un triangulo
+
+    #Dibuja un triangulo completando los 3 lados 
+    for count in range(3): 
         forward(end.x - start.x) # Dibuja un lado del triangulo
         left(120) # Gira 120 grados a la izquierda para formar el angulo del triangulo
+        
     end_fill() # Termina de rellenar el triangulo
 
 def tap(x, y):
