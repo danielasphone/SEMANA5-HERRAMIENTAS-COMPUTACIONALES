@@ -4,7 +4,7 @@ from freegames import path
 
 car = path('car.gif')
 tiles = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔',
-         '⚽️', '🏀', '🏈', '⚾️', '🎾', '🏐', '🎱', '🏓', '🚗', '🚕', '✈️', '🚀', '🚁', '🛳', '🚤', '🚲'] * 2
+         '⚽️', '🏀', '🏈', '⚾️', '🎾', '🏐', '🎱', '🏓', '🚗', '🚕', '✈️', '🚀', '🚁', '🛳', '🚤', '🚲'] * 2 #Contenido de cada cuadro
 state = {'mark': None, 'Taps': 0}
 hide = [True] * 64
 
@@ -35,7 +35,7 @@ def tap(x, y):
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
-        state['Taps'] += 1
+        state['Taps'] += 1 #Incremento en el contador de taps
     else:
         hide[spot] = False
         hide[mark] = False
@@ -48,7 +48,7 @@ def draw():
     shape(car)
     stamp()
 
-    if all(not hidden for hidden in hide):
+    if all(not hidden for hidden in hide): #Condicional para verificar si todos los cuadros fueron destapados
         up()
         goto(-100, 0)
         color('green')
@@ -65,13 +65,13 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 25, y + 7)
+        goto(x + 25, y + 7) #Digito centrado
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'), align="center")
     up()
     goto(-180, 180)
     color('black')
-    write(f"Taps: {state['Taps']}", font=('Arial', 15, 'normal'))
+    write(f"Taps: {state['Taps']}", font=('Arial', 15, 'normal')) #Texto que muestra los taps
 
     update()
     ontimer(draw, 100)
