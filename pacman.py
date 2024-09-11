@@ -7,14 +7,14 @@ path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
 pacman = vector(-40, -80)
-ghosts = [
+ghosts = [ #velocidad de los fantasmas
     [vector(-180, 160), vector(10, 0)],
     [vector(-180, -160), vector(0, 10)],
     [vector(100, 160), vector(0, -10)],
     [vector(100, -160), vector(-10, 0)],
 ]
 
-tiles = [
+tiles = [ #Tablero modificado en donde 0 es pared
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
@@ -116,7 +116,7 @@ def move():
         if valid(point + course):
             point.move(course)
         else:
-            options = [
+            options = [ #Ajuste de la velocidad
                 vector(10, 0),
                 vector(-10, 0),
                 vector(0, 10),
