@@ -4,8 +4,7 @@ from freegames import path
 
 car = path('car.gif')
 tiles = list(range(32)) * 2
-state = {'mark': None}
-state = {"taps" : 0}
+state = {'mark': None, 'Taps': 0}
 hide = [True] * 64
 
 def square(x, y):
@@ -35,6 +34,7 @@ def tap(x, y):
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
+        state['Taps'] += 1
     else:
         hide[spot] = False
         hide[mark] = False
@@ -46,6 +46,13 @@ def draw():
     goto(0, 0)
     shape(car)
     stamp()
+
+    if all(not hidden for hidden in hide):
+        up()
+        goto(-100, 0)
+        color('green')
+        write("Ganaste!", font=('Arial', 30, 'bold'))
+
 
     for count in range(64):
         if hide[count]:
@@ -63,7 +70,7 @@ def draw():
     up()
     goto(-180, 180)
     color('black')
-    write(f"Taps: {state['taps']}", font=('Arial', 15, 'normal'))
+    write(f"Taps: {state['Taps']}", font=('Arial', 15, 'normal'))
 
     update()
     ontimer(draw, 100)
